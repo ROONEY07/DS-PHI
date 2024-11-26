@@ -1,82 +1,103 @@
 #include<bits/stdc++.h>
 using namespace std;
-// create nodes
+// create node
 class node
 {
     public:
-     int val;
-     node* next;
-
-     //constructor 
-     node(int val)
-     {
-         this->val = val;
-         this->next = NULL;
-     }
+    int val;
+    node* next;
+    // constructor
+    node(int val)
+    {
+        this->val = val;
+        this->next = NULL;
+    }
 };
+
 // print the node
-void print_node(node* head)
+void print_node(node* head)  
 {
-    cout<<"\nYour linked list is: ";
+    cout<<"Linked list is: ";
     node* tmp = head;
     while (tmp!=NULL)
     {
         cout<<tmp->val<<" ";
         tmp = tmp->next;
     }
-    cout<<endl;
+    
 }
 
-// insert at tail as optimised way
-void insert_at_tail(node* &head, node* &tail, int val)
+// insert at tail
+void insert_tail(node* &head, node* &tail, int val)     
 {
-    // create a newNode which you wanna insert at tail
     node* newNode = new node(val);
-    // if the head is NULL, then new Node comes first times, so the head and tail will be stand in the 
-    // same place...
+    // if my head is NULL the handle the execptation
+
     if (head == NULL)
     {
         head = newNode;
         tail = newNode;
         return;
     }
-    // now insert at tail or linked the new node to tail
+    
+    // otherwise there is a value and tail .
+    // so insert at tail
     tail->next = newNode;
-    // and update the tail
+
+    // now update the tail
     tail = newNode;
+    
+    
 }
+// search the linked list
+int SearchItem(node* head, int X)
+{
+     int CurrentIndex = 0;
+     node* tmp = head;
+     while (tmp!=NULL)
+     {
+         if (tmp->val == X)
+         {
+            return CurrentIndex;
+         }
+         tmp = tmp->next;
+         CurrentIndex++;
+     }
+     
+     
+    return -1;
+    
+}
+
 int main()
 {
-    node* head = NULL;
-    node* tail = NULL;
-
-    //take input from the user
-    int val;
-    // cout<<"Enter the val: ";
-    while (true)
-    {
-        cin>>val;
-        if(val==-1) break;
-        insert_at_tail(head,tail,val);
-    }
-
-    int X;
-    cout<<"Enter the X: ";
-    cin>>X;
-
-    // now check the value X is present or not
-    // we can do it by the rule of selection sort
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = i+1; j < n; j++)
-        {
-            if ()
-            {
-                /* code */
-            }
-            
-        }
-        
-    }
     
+    int test;
+    cin >> test;
+
+    // Search for each test case
+    for (int t = 1; t <= test; t++)
+    {
+        node* head = NULL;
+        node* tail = NULL;
+
+        int val;
+        // Take input for the linked list
+        while (true)
+        {
+            cin >> val;
+            if (val == -1) break;  
+            insert_tail(head, tail, val);
+        }
+ 
+        // called the function
+        // SearchItem(head);  // Search for the value in the linked list
+        int x;
+        cin>>x;
+        cout<<SearchItem(head,x);
+        cout<<endl;
+   
+    }
+
+    return 0;
 }
